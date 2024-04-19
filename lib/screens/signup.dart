@@ -61,7 +61,7 @@ class SignUpScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Padding(
+            const Padding(
               padding: kDefaultPadding,
               child: SignUpForm(),
             ),
