@@ -130,7 +130,7 @@ class LogInScreen extends StatelessWidget {
                     builder: (context) {
                      final loginController = Provider.of<LoginViewModel>(context);
                       return ListView.builder(
-                        itemCount: 2,
+                        itemCount: loginController.allData.length,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           return const Padding(
