@@ -1,4 +1,6 @@
 // import 'package:flutter/cupertino.dart';
+// ignore_for_file: unnecessary_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -128,7 +130,7 @@ class LogInScreen extends StatelessWidget {
                     builder: (context) {
                      final loginController = Provider.of<LoginViewModel>(context);
                       return ListView.builder(
-                        itemCount: loginController.allData.length,
+                        itemCount: 2,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           return const Padding(

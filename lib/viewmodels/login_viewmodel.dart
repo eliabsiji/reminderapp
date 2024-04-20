@@ -15,12 +15,8 @@ class LoginViewModel extends ChangeNotifier {
   getAll() async {
     _navigationService.showloader();
     var resData = await ApiProvider().get();
-    if (resData) {
-      print("resdata works");
-    }
     allData =
         resData.map<LoginModel>((item) => LoginModel.fromJson(item)).toList();
-    print(allData);
     notifyListeners();
   }
 }
