@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +15,8 @@ class LogInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
+    
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LoginViewModel>(
@@ -23,7 +24,7 @@ class LogInScreen extends StatelessWidget {
       ],
       child: Scaffold(
         body: Form(
-          key: _formKey,
+          key: formKey,
           child: Padding(
             padding: kDefaultPadding,
             child: SingleChildScrollView(
@@ -100,7 +101,7 @@ class LogInScreen extends StatelessWidget {
                     return GestureDetector(
                       onTap: () => {
                         // Validate returns true if the form is valid, or false otherwise.
-                        if (_formKey.currentState!.validate())
+                        if (formKey.currentState!.validate())
                           {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Processing Data')),
@@ -123,27 +124,32 @@ class LogInScreen extends StatelessWidget {
                     height: 20,
                   ),
                   // const LoginOption(),
-                  ListView.builder(
-                    itemCount: 3,
-                    shrinkWrap: true,
-                    itemBuilder: (BuildContext context, int index) {
-                      return const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: ListTile(
-                          tileColor: Colors.amber,
-                          title: Text("Title"),
-                          subtitle: Text("Subtitle"),
-                          // trailing: PopupMenuButton(
-                          //  child: Icon(Icons.more_vert),
-                          //   // itemBuilder:
-                          // //   itemBuilder: (BuildContext context) { 
+                  Builder(
+                    builder: (context) {
+                      // final loginController = Provider.of<LoginViewModel>(context);
+                      return ListView.builder(
+                        itemCount: 5,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: ListTile(
+                              tileColor: Colors.amber,
+                              title: Text("Title"),
+                              subtitle: Text("Subtitle"),
+                              // trailing: PopupMenuButton(
+                              //  child: Icon(Icons.more_vert),
+                              //   // itemBuilder:
+                              // //   itemBuilder: (BuildContext context) { 
+                                
+                              // //  },
                             
-                          // //  },
-                        
-                          //   ),
-                        ),
+                              //   ),
+                            ),
+                          );
+                        },
                       );
-                    },
+                    }
                   )
                 ],
               ),
