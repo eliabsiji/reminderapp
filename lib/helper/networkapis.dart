@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  final String _baseURL = "http://192.168.0.170:8000/api/person/";
+final String _baseURL = "http://172.20.10.3:8000/api/person/";
 
   get() async {
     try {
       final response = await http.get(Uri.parse(_baseURL));
       if (response.statusCode == 200) {
         var responseJSON = json.decode(response.body.toString());
-        debugPrint(responseJSON.toString());
         return responseJSON;
       }
     } catch (e) {

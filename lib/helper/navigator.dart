@@ -20,7 +20,7 @@ class NavigationService {
 
   //loader service
 
-  showloader() {
+  showloader() async {
     Future.delayed(Duration.zero, () {
       showDialog(
           context: navigationKey.currentContext!,

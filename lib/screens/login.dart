@@ -11,6 +11,8 @@ import 'package:reminderapp/theme.dart';
 import 'package:reminderapp/viewmodels/login_viewmodel.dart';
 import 'package:reminderapp/widgets/login_form.dart';
 import 'package:reminderapp/widgets/primary_button.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});
@@ -18,7 +20,7 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-    
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LoginViewModel>(
@@ -126,33 +128,33 @@ class LogInScreen extends StatelessWidget {
                     height: 20,
                   ),
                   // const LoginOption(),
-                  Builder(
-                    builder: (context) {
-                     final loginController = Provider.of<LoginViewModel>(context);
-                      return ListView.builder(
-                        itemCount: loginController.allData.length,
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: ListTile(
-                              tileColor: Colors.amber,
-                              title: Text("Title"),
-                              subtitle: Text("Subtitle"),
-                              // trailing: PopupMenuButton(
-                              //  child: Icon(Icons.more_vert),
-                              //   // itemBuilder:
-                              // //   itemBuilder: (BuildContext context) { 
-                                
-                              // //  },
-                            
-                              //   ),
-                            ),
-                          );
-                        },
-                      );
-                    }
-                  )
+                  Builder(builder: (context) {
+                    final loginController =
+                        Provider.of<LoginViewModel>(context);
+
+                    return ListView.builder(
+                      itemCount: loginController.allData.length,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: ListTile(
+                            tileColor: Colors.amber,
+                            title: Text("Title"),
+                            subtitle: Text("Subtitle"),
+                            // trailing: PopupMenuButton(
+                            //  child: Icon(Icons.more_vert),
+                            //   // itemBuilder:
+                            // //   itemBuilder: (BuildContext context) {
+
+                            // //  },
+
+                            //   ),
+                          ),
+                        );
+                      },
+                    );
+                  })
                 ],
               ),
             ),

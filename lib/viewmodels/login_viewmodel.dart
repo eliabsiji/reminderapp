@@ -10,13 +10,16 @@ class LoginViewModel extends ChangeNotifier {
   TextEditingController passwordcontroller = TextEditingController();
   List<LoginModel> allData = [];
 
-  LoginViewModel(this._navigationService);
+  LoginViewModel(this._navigationService) {
+    getAll();
+  }
 
   getAll() async {
     _navigationService.showloader();
     var resData = await ApiProvider().get();
     allData =
         resData.map<LoginModel>((item) => LoginModel.fromJson(item)).toList();
+    _navigationService.goBack();
     notifyListeners();
   }
 }
