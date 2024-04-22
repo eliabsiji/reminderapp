@@ -11,8 +11,6 @@ import 'package:reminderapp/theme.dart';
 import 'package:reminderapp/viewmodels/login_viewmodel.dart';
 import 'package:reminderapp/widgets/login_form.dart';
 import 'package:reminderapp/widgets/primary_button.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});

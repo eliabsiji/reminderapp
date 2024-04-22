@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-final String _baseURL = "http://172.20.10.3:8000/api/person/";
+  final String _baseURL = "http://172.20.10.4:8000/api/person/";
 
   get() async {
     try {
