@@ -15,6 +15,7 @@ import 'package:reminderapp/widgets/primary_button.dart';
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();

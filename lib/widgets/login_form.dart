@@ -13,14 +13,15 @@ class LogInForm extends StatefulWidget {
   _LogInFormState createState() => _LogInFormState();
 }
 
+
 class _LogInFormState extends State<LogInForm> {
-  
   bool _isObscure = true;
+
 
 
   @override
   Widget build(BuildContext context) {
-  final logincontroller = Provider.of<LoginViewModel>(context);
+    final logincontroller = Provider.of<LoginViewModel>(context);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LoginViewModel>(
@@ -28,15 +29,14 @@ class _LogInFormState extends State<LogInForm> {
       ],
       child: Column(
         children: [
-          buildInputForm('Email', false,logincontroller),
-          buildInputForm2('Password', true,logincontroller),
-          
+          buildInputForm('Email', false, logincontroller),
+          buildInputForm2('Password', true, logincontroller),
         ],
       ),
     );
   }
 
-  Padding buildInputForm(String label, bool pass,provider) {
+  Padding buildInputForm(String label, bool pass, provider) {
     //final logincontroller = Provider.of<LoginViewModel>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
@@ -79,9 +79,7 @@ class _LogInFormState extends State<LogInForm> {
     );
   }
 
-
-    Padding buildInputForm2(String label, bool pass,provider) {
-    
+  Padding buildInputForm2(String label, bool pass, provider) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
@@ -90,7 +88,7 @@ class _LogInFormState extends State<LogInForm> {
           if (value == null || value.isEmpty) {
             return "Password Field required";
           }
-           return null;
+          return null;
         },
         obscureText: pass ? _isObscure : false,
         decoration: InputDecoration(
@@ -123,5 +121,3 @@ class _LogInFormState extends State<LogInForm> {
     );
   }
 }
-
-
