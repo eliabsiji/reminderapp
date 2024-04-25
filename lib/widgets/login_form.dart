@@ -13,10 +13,12 @@ class LogInForm extends StatefulWidget {
   _LogInFormState createState() => _LogInFormState();
 }
 
-
 class _LogInFormState extends State<LogInForm> {
   bool _isObscure = true;
-
+   Map<String, IconData> iconMapping = {
+        'person' : Icons.person,
+        'password' : Icons.password,
+      };
 
 
   @override
@@ -29,14 +31,14 @@ class _LogInFormState extends State<LogInForm> {
       ],
       child: Column(
         children: [
-          buildInputForm('Email', false, logincontroller),
-          buildInputForm2('Password', true, logincontroller),
+          buildInputForm('Username', false, logincontroller, iconMapping['person']!),
+          buildInputForm2('Password', true, logincontroller, iconMapping['password']!),
         ],
       ),
     );
   }
 
-  Padding buildInputForm(String label, bool pass, provider) {
+  Padding buildInputForm(String label, bool pass, provider, IconData iconMapping) {
     //final logincontroller = Provider.of<LoginViewModel>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
@@ -54,6 +56,12 @@ class _LogInFormState extends State<LogInForm> {
             labelStyle: const TextStyle(
               color: kTextFieldColor,
             ),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Colors.grey)),
+            fillColor: Colors.grey,
+            filled: false,
+            prefixIcon: Icon(iconMapping),
             focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: kPrimaryColor),
             ),
@@ -79,7 +87,7 @@ class _LogInFormState extends State<LogInForm> {
     );
   }
 
-  Padding buildInputForm2(String label, bool pass, provider) {
+  Padding buildInputForm2(String label, bool pass, provider, IconData iconMapping) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
@@ -96,6 +104,12 @@ class _LogInFormState extends State<LogInForm> {
             labelStyle: const TextStyle(
               color: kTextFieldColor,
             ),
+            border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.grey)),
+            fillColor: Colors.grey,
+            filled: false,
+            prefixIcon: Icon(iconMapping) ,
             focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: kPrimaryColor),
             ),

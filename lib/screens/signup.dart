@@ -1,6 +1,8 @@
 // ignore_for_file: unused_import
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:reminderapp/screens/login.dart';
 import 'package:reminderapp/theme.dart';
 import 'package:reminderapp/widgets/checkbox.dart';
@@ -52,7 +54,6 @@ class SignUpScreen extends StatelessWidget {
                     child: Text(
                       'Log In',
                       style: textButton.copyWith(
-                        decoration: TextDecoration.underline,
                         decorationThickness: 1,
                       ),
                     ),
@@ -60,8 +61,14 @@ class SignUpScreen extends StatelessWidget {
                 ],
               ),
             ),
+             SizedBox(
+              height: 200,
+              child: Center(
+                  child: Image.asset(
+                'images/signup logo.png',
+              ))),
             const SizedBox(
-              height: 10,
+              height: 5,
             ),
             const Padding(
               padding: kDefaultPadding,

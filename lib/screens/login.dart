@@ -1,6 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 // ignore_for_file: unnecessary_import
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -12,10 +13,8 @@ import 'package:reminderapp/viewmodels/login_viewmodel.dart';
 import 'package:reminderapp/widgets/login_form.dart';
 import 'package:reminderapp/widgets/primary_button.dart';
 
-
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +35,74 @@ class LogInScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 120,
+                    height: 80,
                   ),
-                  Text(
-                    'Hello,Welcome Back',
-                    style: titleText,
+                  Center(
+                    child: Text(
+                      'Welcome',
+                      style: titleText,
+                    ),
                   ),
                   const SizedBox(
                     height: 5,
+                  ),
+
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  SizedBox(
+                      height: 100,
+                      child: Center(
+                          child: Image.asset(
+                        'images/login logo.png',
+                        // height: 100,
+                        // width: 300,
+                        // fit: BoxFit.contain,
+                      ))),
+                  const LogInForm(),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ResetPasswordScreen()));
+                    },
+                    child: const Text(
+                      'Forgot password?',
+                      style: TextStyle(
+                        color: kZambeziColor,
+                        fontSize: 14,
+                       
+                        decorationThickness: 2,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Builder(builder: (context) {
+                    return GestureDetector(
+                      onTap: () => {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        if (formKey.currentState!.validate())
+                          {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Processing Data')),
+                            )
+                          }
+                      },
+                      child: const PrimaryButton(
+                        buttonText: 'Log In',
+                      
+                      ),
+                    );
+                  }),
+                  const SizedBox(
+                    height: 20,
                   ),
                   Row(
                     children: [
@@ -66,95 +125,48 @@ class LogInScreen extends StatelessWidget {
                         child: Text(
                           'Sign Up',
                           style: textButton.copyWith(
-                            decoration: TextDecoration.underline,
-                            decorationThickness: 1,
+                            
+                            decorationThickness: 3,
                           ),
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const LogInForm(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ResetPasswordScreen()));
-                    },
-                    child: const Text(
-                      'Forgot password?',
-                      style: TextStyle(
-                        color: kZambeziColor,
-                        fontSize: 14,
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 1,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Builder(builder: (context) {
-                    return GestureDetector(
-                      onTap: () => {
-                        // Validate returns true if the form is valid, or false otherwise.
-                        if (formKey.currentState!.validate())
-                          {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')),
-                            )
-                          }
-                      },
-                      child: const PrimaryButton(
-                        buttonText: 'Log In',
-                      ),
-                    );
-                  }),
-                  const SizedBox(
-                    height: 20,
                   ),
                   // Text(
                   //   'Or log in with:',
                   //   style: subTitle.copyWith(color: kBlackColor),
                   // ),
                   const SizedBox(
-                    height: 20,
+                    height: 60,
                   ),
                   // const LoginOption(),
-                  Builder(builder: (context) {
-                    final loginController =
-                        Provider.of<LoginViewModel>(context);
+                  // Builder(builder: (context) {
+                  //   final loginController =
+                  //       Provider.of<LoginViewModel>(context);
 
-                    return ListView.builder(
-                      itemCount: loginController.allData.length,
-                      shrinkWrap: true,
-                      itemBuilder: (BuildContext context, int index) {
-                        return const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: ListTile(
-                            tileColor: Colors.amber,
-                            title: Text("Title"),
-                            subtitle: Text("Subtitle"),
-                            // trailing: PopupMenuButton(
-                            //  child: Icon(Icons.more_vert),
-                            //   // itemBuilder:
-                            // //   itemBuilder: (BuildContext context) {
+                  //   return ListView.builder(
+                  //     itemCount: loginController.allData.length,
+                  //     shrinkWrap: true,
+                  //     itemBuilder: (BuildContext context, int index) {
+                  //       return const Padding(
+                  //         padding: EdgeInsets.all(8.0),
+                  //         child: ListTile(
+                  //           tileColor: Colors.amber,
+                  //           title: Text("Title"),
+                  //           subtitle: Text("Subtitle"),
+                  //           // trailing: PopupMenuButton(
+                  //           //  child: Icon(Icons.more_vert),
+                  //           //   // itemBuilder:
+                  //           // //   itemBuilder: (BuildContext context) {
 
-                            // //  },
+                  //           // //  },
 
-                            //   ),
-                          ),
-                        );
-                      },
-                    );
-                  })
+                  //           //   ),
+                  //         ),
+                  //       );
+                  //     },
+                  //   );
+                  // })
                 ],
               ),
             ),

@@ -39,6 +39,11 @@ dependencies:
   provider: ^6.1.2
   another_flutter_splash_screen: ^1.2.0
   introduction_slider: ^2.0.1
+  animated_text_kit: ^4.2.2
+  intro_slider: ^4.2.1
+  flutter_launcher_icons: ^0.13.1
+
+
  
   
 
@@ -69,6 +74,8 @@ flutter:
      - images/man.png
      - images/packing-list.png
      - images/packingbag.jpg
+     - images/login logo.png
+     - images/signup logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -95,3 +102,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "images/man.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
