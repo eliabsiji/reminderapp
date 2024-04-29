@@ -62,7 +62,7 @@ class _LogInFormState extends State<LogInForm> {
             fillColor: Colors.grey,
             filled: false,
             prefixIcon: Icon(iconMapping),
-            focusedBorder: const UnderlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: kPrimaryColor),
             ),
             suffixIcon: pass
@@ -110,7 +110,7 @@ class _LogInFormState extends State<LogInForm> {
             fillColor: Colors.grey,
             filled: false,
             prefixIcon: Icon(iconMapping) ,
-            focusedBorder: const UnderlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: kPrimaryColor),
             ),
             suffixIcon: pass

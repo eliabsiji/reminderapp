@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
           duration: const Duration(milliseconds: 2500),
           animationDuration: const Duration(milliseconds: 2000),
           // onAnimationEnd: () => debugPrint("On Scale End"),
-          nextScreen: const LogInScreen()
+          nextScreen: const IntroSlider(),
         ),
       ),
     );

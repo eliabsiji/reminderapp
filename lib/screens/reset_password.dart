@@ -44,9 +44,12 @@ class ResetPasswordScreen extends StatelessWidget {
                         builder: (context) => const LogInScreen(),
                       ));
                 },
-                child: const PrimaryButton(buttonText: 'Reset Password')),
+                child: const SizedBox(
+                  height: 47,
+                  child: PrimaryButton(buttonText: 'Reset Password'))),
           ],
         ),
+        
       ),
     );
   }

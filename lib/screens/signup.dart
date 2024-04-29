@@ -1,8 +1,5 @@
 // ignore_for_file: unused_import
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:reminderapp/screens/login.dart';
 import 'package:reminderapp/theme.dart';
 import 'package:reminderapp/widgets/checkbox.dart';
@@ -84,16 +81,14 @@ class SignUpScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Padding(
-              padding: kDefaultPadding,
-              child: CheckBox('I have at least 18 years old.'),
-            ),
             const SizedBox(
               height: 20,
             ),
             const Padding(
               padding: kDefaultPadding,
-              child: PrimaryButton(buttonText: 'Sign Up'),
+              child: SizedBox( 
+                height:49, 
+                child: PrimaryButton(buttonText: 'Sign Up')),
             ),
             const SizedBox(
               height: 20,

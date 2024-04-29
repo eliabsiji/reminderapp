@@ -43,14 +43,13 @@ class _SignUpFormState extends State<SignUpForm> {
             hintText: hint,
             hintStyle: const TextStyle(color: kTextFieldColor),
             border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(18),
-            borderSide: BorderSide.none),
-            fillColor:
-                const Color.fromARGB(255, 169, 202, 241).withOpacity(0.1),
-            filled: true,
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.grey)),
+            fillColor: Colors.grey,
+            filled: false,
             prefixIcon: Icon(iconMapping),
-            focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: kPrimaryColor)),
+            focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor),),
             suffixIcon: pass
                 ? IconButton(
                     onPressed: () {

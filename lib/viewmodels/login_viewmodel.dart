@@ -11,15 +11,25 @@ class LoginViewModel extends ChangeNotifier {
   List<LoginModel> allData = [];
 
   LoginViewModel(this._navigationService) {
-    getAll();
+    //getAll();
   }
 
-  getAll() async {
+  userLogin() async {
     _navigationService.showloader();
-    var resData = await ApiProvider().get();
-    allData =
-        resData.map<LoginModel>((item) => LoginModel.fromJson(item)).toList();
-    _navigationService.goBack();
-    notifyListeners();
+    var resData = await ApiProvider().loginpost("login/",
+        {"email": emailcontroller.text, "password": passwordcontroller});
+    print(resData);
+    // allData =
+    //     resData.map<LoginModel>((item) => LoginModel.fromJson(item)).toList();
+    // _navigationService.goBack();
+    // notifyListeners();
   }
+  // getAll() async {
+  //   _navigationService.showloader();
+  //   var resData = await ApiProvider().get();
+  //   allData =
+  //       resData.map<LoginModel>((item) => LoginModel.fromJson(item)).toList();
+  //   _navigationService.goBack();
+  //   notifyListeners();
+  // }
 }

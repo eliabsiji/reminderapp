@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reminderapp/screens/login.dart';
-import 'package:reminderapp/slider.dart';
 import 'package:reminderapp/splash_screen.dart';
+
 
 
 void main() {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins'),
-      home: const LogInScreen()
+      home: const SplashScreen()
     );
   }
 }

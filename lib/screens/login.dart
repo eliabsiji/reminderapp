@@ -55,9 +55,7 @@ class LogInScreen extends StatelessWidget {
                       child: Center(
                           child: Image.asset(
                         'images/login logo.png',
-                        // height: 100,
-                        // width: 300,
-                        // fit: BoxFit.contain,
+                      
                       ))),
                   const LogInForm(),
                   const SizedBox(
@@ -85,19 +83,24 @@ class LogInScreen extends StatelessWidget {
                     height: 20,
                   ),
                   Builder(builder: (context) {
+                  final loginController = Provider.of<LoginViewModel>(context);
                     return GestureDetector(
                       onTap: () => {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (formKey.currentState!.validate())
                           {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')),
-                            )
+                            loginController.userLogin()
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   const SnackBar(content: Text('Processing Data')),
+                            // )
                           }
                       },
-                      child: const PrimaryButton(
-                        buttonText: 'Log In',
-                      
+                      child: const SizedBox(
+                        height: 49,
+                        child: PrimaryButton(
+                          buttonText: 'Log In',
+                        
+                        ),
                       ),
                     );
                   }),
@@ -125,7 +128,6 @@ class LogInScreen extends StatelessWidget {
                         child: Text(
                           'Sign Up',
                           style: textButton.copyWith(
-                            
                             decorationThickness: 3,
                           ),
                         ),

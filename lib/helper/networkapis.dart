@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  final String _baseURL = "http://172.20.10.4:8000/api/person/";
+  final String _baseURL = "http://192.168.22.202:8000/api/";
 
-  get() async {
+  get(String endpoint) async {
     try {
-      final response = await http.get(Uri.parse(_baseURL));
+      final response = await http.get(Uri.parse(_baseURL + endpoint));
       if (response.statusCode == 200) {
         var responseJSON = json.decode(response.body.toString());
         return responseJSON;
@@ -18,7 +18,7 @@ class ApiProvider {
   }
 
 //posting data
-  post(String endpoint, Map<String, dynamic> data) async {
+  loginpost(String endpoint, Map<String, dynamic> data) async {
     String jsondata = json.encode(data);
     // String jsondata = jsonEncode(data);
     try {
