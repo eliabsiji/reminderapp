@@ -1,11 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:http/http.dart' as http;
 import 'package:reminderapp/api/auth_api_service.dart';
-import 'package:reminderapp/helper/app_status.dart';
-import 'package:reminderapp/helper/constants.dart';
-import 'package:reminderapp/models/userlogin/user_login_model.dart';
-import 'package:reminderapp/models/userlogin/user_login_success.dart';
 
 
 class AuthRepository {

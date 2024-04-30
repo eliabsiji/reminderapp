@@ -8,7 +8,7 @@ class AuthApiService {
   AuthApiService({required Dio dio}) {
     _dio = Dio(BaseOptions(
       baseUrl: BASE_URL,
-      connectTimeout: const Duration(seconds:5),
+      connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 3),
       responseType: ResponseType.json,
     ))
@@ -17,14 +17,13 @@ class AuthApiService {
       ]);
   }
 
- 
-
   Future<String?> loginUser(Map<dynamic, dynamic> req) async {
     try {
       final response =
           // ignore: prefer_interpolation_to_compose_strings
           await _dio.post(BASE_URL + "login/", data: req);
-        if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        print(response.data);
         // Success
         //return response.data['token'];
         // Check if 'token' key exists in the response data

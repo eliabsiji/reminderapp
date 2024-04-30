@@ -1,11 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:reminderapp/helper/app_status.dart';
-import 'package:reminderapp/models/userlogin/user_login_model.dart';
-import 'package:reminderapp/models/userlogin/user_login_success.dart';
-import 'package:reminderapp/models/userlogin/userlogin_error_model.dart';
 import 'package:reminderapp/repo/user_auth_repo.dart';
 
 class LoginViewModel extends ChangeNotifier {
