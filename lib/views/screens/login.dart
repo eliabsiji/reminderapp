@@ -6,7 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:reminderapp/api/auth_api_service.dart';
 import 'package:reminderapp/helper/app_loading.dart';
+import 'package:reminderapp/repo/user_auth_repo.dart';
 import 'package:reminderapp/views/screens/reset_password.dart';
 import 'package:reminderapp/views/screens/signup.dart';
 import 'package:reminderapp/theme.dart';
@@ -16,6 +18,14 @@ import 'package:reminderapp/views/widgets/primary_button.dart';
 
 class LogInScreen extends StatelessWidget {
    LogInScreen({super.key});
+    // Create Dio instance for HTTP requests
+  late Dio dio = Dio();
+
+  // Create ApiService instance with the Dio instance
+  late AuthApiService apiService = AuthApiService(dio: dio);
+
+  // Create LoginRepository instance with the ApiService instance
+  late AuthRepository loginRepository = AuthRepository(apiService: apiService);
 
  // Declare the TextEditingControllers at the class level
   final TextEditingController username = TextEditingController();
@@ -35,7 +45,7 @@ class LogInScreen extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<LoginViewModel>(create: (_) => LoginViewModel(authRepository: null))
+        ChangeNotifierProvider<LoginViewModel>(create: (_) => LoginViewModel(authRepository: loginRepository))
       ],
       child: Scaffold(
         body: Form(
@@ -70,8 +80,8 @@ class LogInScreen extends StatelessWidget {
                       ))),
                        if (loginviewModel.isLoading) const CircularProgressIndicator(),
                         // Show error message if login fails
-                        if (!loginviewModel.isLoading && viewModel.loginError != null)
-                          Text(loginloginviewModel.loginError!,
+                        if (!loginviewModel.isLoading && loginviewModel.loginError != null)
+                          Text(loginviewModel.loginError!,
                             style: const TextStyle(color: Colors.red),
                           ),
                         // Show response message if login is successful
@@ -79,10 +89,55 @@ class LogInScreen extends StatelessWidget {
                           Text(loginviewModel.response!.toString(),
                             style: const TextStyle(color: Colors.green),
                           ),
-                   Padding(
+                        Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: TextFormField(
-                          // controller: ,
+                         controller: username ,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Email Field required";
+                            }
+                            return null;
+                          },
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              labelText: 'Username',
+                              labelStyle: const TextStyle(
+                                color: kTextFieldColor,
+                              ),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: const BorderSide(color: Colors.grey)),
+                              fillColor: Colors.grey,
+                              filled: false,
+                              prefixIcon: Icon(iconMapping['person']!),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: kPrimaryColor),
+                              ),
+                              suffixIcon: true
+                                  ? IconButton(
+                                      onPressed: () {
+                                        // setState(() {
+                                        //   _isObscure = !_isObscure;
+                                        // });
+                                      },
+                                      icon:true
+                                          ? const Icon(
+                                              Icons.visibility_off,
+                                              color: kTextFieldColor,
+                                            )
+                                          : const Icon(
+                                              Icons.visibility,
+                                              color: kPrimaryColor,
+                                            ),
+                                    )
+                                  : null),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: TextFormField(
+                         controller: password ,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return "Email Field required";
@@ -148,29 +203,20 @@ class LogInScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Builder(builder: (context) {
-                    final authConttoller = Provider.of<LoginViewModel>(context);
-                    return GestureDetector(
-                      onTap: () => {
-                       
+                 
+                    GestureDetector(
+                      onTap: () =>  {
+                       loginviewModel.login(username.text, password.text) 
                          
                       },
                       child: const SizedBox(
                         height: 49,
                         child: PrimaryButton(
                            buttonText: 'Log In',
-                          // Construct login request with the entered username and password
-                          Map<dynamic, dynamic> req = {
-                            "email": name.text,
-                            "password": password.text,
-                          };
-                          // Call the login method in the view model with the request
-                          viewModel.login(req);
-                         
                         ),
                       ),
-                    );
-                  }),
+                    ),
+             
                   const SizedBox(
                     height: 20,
                   ),
