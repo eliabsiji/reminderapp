@@ -178,8 +178,8 @@ class LogInScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Map<dynamic, dynamic> req = {
-                      "username": "siji",
-                      "password": "1234",
+                      "username":username,
+                      "password":password,
                     };
                     loginviewModel.login(req);
                   },
