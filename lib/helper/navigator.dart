@@ -19,7 +19,6 @@ class NavigationService {
   }
 
   //loader service
-
   showloader() async {
     Future.delayed(Duration.zero, () {
       showDialog(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:reminderapp/screens/login.dart';
+import 'package:reminderapp/views/screens/login.dart';
 import 'package:reminderapp/theme.dart';
-import 'package:reminderapp/widgets/primary_button.dart';
-import 'package:reminderapp/widgets/reset_form.dart';
+import 'package:reminderapp/views/widgets/primary_button.dart';
+import 'package:reminderapp/views/widgets/reset_form.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
@@ -41,7 +41,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const LogInScreen(),
+                        builder: (context) =>  LogInScreen(),
                       ));
                 },
                 child: const SizedBox(

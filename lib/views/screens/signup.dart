@@ -1,11 +1,11 @@
 // ignore_for_file: unused_import
 import 'package:flutter/material.dart';
-import 'package:reminderapp/screens/login.dart';
+import 'package:reminderapp/views/screens/login.dart';
 import 'package:reminderapp/theme.dart';
-import 'package:reminderapp/widgets/checkbox.dart';
-import 'package:reminderapp/widgets/login_option.dart';
-import 'package:reminderapp/widgets/primary_button.dart';
-import 'package:reminderapp/widgets/signup_form.dart';
+import 'package:reminderapp/views/widgets/checkbox.dart';
+import 'package:reminderapp/views/widgets/login_option.dart';
+import 'package:reminderapp/views/widgets/primary_button.dart';
+import 'package:reminderapp/views/widgets/signup_form.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -46,7 +46,7 @@ class SignUpScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LogInScreen()));
+                              builder: (context) =>  LogInScreen()));
                     },
                     child: Text(
                       'Log In',

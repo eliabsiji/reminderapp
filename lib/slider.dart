@@ -1,13 +1,25 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:reminderapp/screens/login.dart';
-import 'package:reminderapp/screens/signup.dart';
+import 'package:reminderapp/api/auth_api_service.dart';
+import 'package:reminderapp/views/screens/login.dart';
+import 'package:reminderapp/views/screens/signup.dart';
 import 'package:reminderapp/theme.dart';
 
 class IntroSlider extends StatelessWidget {
   const IntroSlider({super.key});
 
+    // Create Dio instance for HTTP requests
+    // Create Dio instance for HTTP requests
+  final Dio dio = Dio();
+
+  // Create ApiService instance with the Dio instance
+  final AuthApiService apiService = AuthApiService(dio: dio);
+
+  // Create LoginRepository instance with the ApiService instance
+  final AuthRepository loginRepository = AuthRepository(apiService: apiService);
+  
   @override
   Widget build(BuildContext context) {
     const bodyStyle = TextStyle(fontSize: 19.0);
@@ -162,7 +174,7 @@ class IntroSlider extends StatelessWidget {
         ),
       ),
         dotsContainerDecorator: const ShapeDecoration(
-        color: Color.fromARGB(221, 226, 225, 225),
+        // color: Color.fromARGB(221, 226, 225, 225),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),

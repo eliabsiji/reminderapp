@@ -1,17 +1,29 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:reminderapp/slider.dart';
-import 'package:reminderapp/theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
       @override
       _SplashScreenState createState() => _SplashScreenState();
+
+       // Create Dio instance for HTTP requests
+    final Dio dio = Dio();
+
+    // Create ApiService instance with the Dio instance
+    final ApiService apiService = ApiService(dio: dio);
+
+    // Create LoginRepository instance with the ApiService instance
+    final LoginRepository loginRepository = LoginRepository(apiService: apiService);
     }
     
+
+
+
 class _SplashScreenState extends State<SplashScreen> {
   // @override
   // void initState() {
@@ -38,8 +50,8 @@ class _SplashScreenState extends State<SplashScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.white10,
-              kPrimaryColor,
+              Colors.white,
+               Colors.white,
             ],
           ),
           childWidget: SizedBox(
