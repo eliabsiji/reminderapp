@@ -18,13 +18,14 @@ import 'package:reminderapp/views/widgets/primary_button.dart';
 
 class LogInScreen extends StatelessWidget {
   LogInScreen({super.key});
- 
+
   // Declare the TextEditingControllers at the class level
   final TextEditingController username = TextEditingController();
   final TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    bool _isObscure = true;
     final formKey = GlobalKey<FormState>();
     final loginviewModel = Provider.of<LoginViewModel>(context);
 
@@ -54,7 +55,7 @@ class LogInScreen extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-    
+
                 const SizedBox(
                   height: 40,
                 ),
@@ -64,8 +65,7 @@ class LogInScreen extends StatelessWidget {
                         child: Image.asset(
                       'images/login logo.png',
                     ))),
-                if (loginviewModel.isLoading)
-                  const CircularProgressIndicator(),
+                if (loginviewModel.isLoading) const CircularProgressIndicator(),
                 // Show error message if login fails
                 if (!loginviewModel.isLoading &&
                     loginviewModel.loginError != null)
@@ -89,39 +89,21 @@ class LogInScreen extends StatelessWidget {
                       }
                       return null;
                     },
-                    obscureText: true,
                     decoration: InputDecoration(
-                        labelText: 'Username',
-                        labelStyle: const TextStyle(
-                          color: kTextFieldColor,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.grey)),
-                        fillColor: Colors.grey,
-                        filled: false,
-                        prefixIcon: Icon(iconMapping['person']!),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: kPrimaryColor),
-                        ),
-                        suffixIcon: true
-                            ? IconButton(
-                                onPressed: () {
-                                  // setState(() {
-                                  //   _isObscure = !_isObscure;
-                                  // });
-                                },
-                                icon: true
-                                    ? const Icon(
-                                        Icons.visibility_off,
-                                        color: kTextFieldColor,
-                                      )
-                                    : const Icon(
-                                        Icons.visibility,
-                                        color: kPrimaryColor,
-                                      ),
-                              )
-                            : null),
+                      labelText: 'Username',
+                      labelStyle: const TextStyle(
+                        color: kTextFieldColor,
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(color: Colors.grey)),
+                      fillColor: Colors.grey,
+                      filled: false,
+                      prefixIcon: Icon(iconMapping['person']!),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: kPrimaryColor),
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
@@ -136,7 +118,7 @@ class LogInScreen extends StatelessWidget {
                     },
                     obscureText: true,
                     decoration: InputDecoration(
-                        labelText: 'Username',
+                        labelText: 'Password',
                         labelStyle: const TextStyle(
                           color: kTextFieldColor,
                         ),
@@ -145,16 +127,16 @@ class LogInScreen extends StatelessWidget {
                             borderSide: const BorderSide(color: Colors.grey)),
                         fillColor: Colors.grey,
                         filled: false,
-                        prefixIcon: Icon(iconMapping['person']!),
+                        prefixIcon: Icon(iconMapping['password']!),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: kPrimaryColor),
                         ),
                         suffixIcon: true
                             ? IconButton(
                                 onPressed: () {
-                                  // setState(() {
-                                  //   _isObscure = !_isObscure;
-                                  // });
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
                                 },
                                 icon: true
                                     ? const Icon(
@@ -169,7 +151,7 @@ class LogInScreen extends StatelessWidget {
                             : null),
                   ),
                 ),
-    
+
                 const SizedBox(
                   height: 20,
                 ),
@@ -178,8 +160,7 @@ class LogInScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                const ResetPasswordScreen()));
+                            builder: (context) => const ResetPasswordScreen()));
                   },
                   child: const Text(
                     'Forgot password?',
@@ -193,7 +174,7 @@ class LogInScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-    
+
                 GestureDetector(
                   onTap: () {
                     Map<dynamic, dynamic> req = {
@@ -209,7 +190,7 @@ class LogInScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-    
+
                 const SizedBox(
                   height: 20,
                 ),
@@ -254,4 +235,6 @@ class LogInScreen extends StatelessWidget {
       ),
     );
   }
+
+  void setState(Null Function() param0) {}
 }
