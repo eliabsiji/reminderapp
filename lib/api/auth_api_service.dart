@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:reminderapp/helper/constants.dart';
 
@@ -19,11 +21,13 @@ class AuthApiService {
 
   Future<String?> loginUser(Map<dynamic, dynamic> req) async {
     try {
+      String jsondata = json.encode(req);
       final response =
           // ignore: prefer_interpolation_to_compose_strings
-          await _dio.post(BASE_URL + "login/", data: req);
+          await _dio.post(BASE_URL + "login/", data: jsondata);
+          
       if (response.statusCode == 200) {
-        print(response.data);
+        print(response.statusCode);
         // Success
         //return response.data['token'];
         // Check if 'token' key exists in the response data

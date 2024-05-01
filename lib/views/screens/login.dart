@@ -65,18 +65,20 @@ class LogInScreen extends StatelessWidget {
                         child: Image.asset(
                       'images/login logo.png',
                     ))),
-                if (loginviewModel.isLoading) const CircularProgressIndicator(),
+                if (loginviewModel.isLoading) 
+                const AppLoading(),
                 // Show error message if login fails
                 if (!loginviewModel.isLoading &&
                     loginviewModel.loginError != null)
+                    
                   Text(
-                    loginviewModel.loginError!,
+                    loginviewModel.userLoginSuccessl.token.toString(),
                     style: const TextStyle(color: Colors.red),
                   ),
                 // Show response message if login is successful
                 if (loginviewModel.response != null)
                   Text(
-                    loginviewModel.response!.toString(),
+                    loginviewModel.userLoginSuccessl.toString(),
                     style: const TextStyle(color: Colors.green),
                   ),
                 Padding(
@@ -178,8 +180,8 @@ class LogInScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Map<dynamic, dynamic> req = {
-                      "username":username,
-                      "password":password,
+                      "username":username.text,
+                      "password":password.text,
                     };
                     loginviewModel.login(req);
                   },
