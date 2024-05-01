@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:reminderapp/helper/constants.dart';
 
@@ -11,7 +10,7 @@ class AuthApiService {
     _dio = Dio(BaseOptions(
       baseUrl: BASE_URL,
       connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 3),
+      receiveTimeout: const Duration(seconds: 5),
       responseType: ResponseType.json,
     ))
       ..interceptors.addAll([
@@ -19,26 +18,18 @@ class AuthApiService {
       ]);
   }
 
-  Future<String?> loginUser(Map<dynamic, dynamic> req) async {
+  Future<dynamic> loginUser(Map<dynamic, dynamic> req) async {
     try {
       String jsondata = json.encode(req);
       final response =
           // ignore: prefer_interpolation_to_compose_strings
           await _dio.post(BASE_URL + "login/", data: jsondata);
-          
       if (response.statusCode == 200) {
-        print(response.statusCode);
         // Success
-        //return response.data['token'];
-        // Check if 'token' key exists in the response data
-        if (response.data.containsKey('token')) {
-          return response.data['token'];
-        }
-        // If 'error' key doesn't exist, return a generic error message
-        return 'An error occurred';
-      } else {
+        return response.data;
+      } else if (response.statusCode == 401) {
         // Handle other status codes as needed
-        return 'Failed to login';
+        return response.data;
       }
     } catch (e) {
       if (e is DioException) {
