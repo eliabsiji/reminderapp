@@ -72,13 +72,13 @@ class LogInScreen extends StatelessWidget {
                     loginviewModel.loginError != null)
                     
                   Text(
-                    loginviewModel.userLoginSuccessl.token.toString(),
+                    'loginviewModel.userLoginSuccessl.token.toString()',
                     style: const TextStyle(color: Colors.red),
                   ),
                 // Show response message if login is successful
                 if (loginviewModel.response != null)
                   Text(
-                    loginviewModel.userLoginSuccessl.token.toString(),
+                    'loginviewModel.userLoginSuccessl.token.toString()',
                     style: const TextStyle(color: Colors.green),
                   ),
                 Padding(

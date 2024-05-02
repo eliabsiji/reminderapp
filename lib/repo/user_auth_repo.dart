@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:reminderapp/api/auth_api_service.dart';
 
 class AuthRepository {
-  final AuthApiService apiService; // Instance of the ApiService class to perform API requests.
+  final AuthApiService
+      apiService; // Instance of the ApiService class to perform API requests.
 
   AuthRepository({required this.apiService});
 
@@ -11,7 +14,7 @@ class AuthRepository {
       final response = await apiService.loginUser(req);
       // Store the response from the API call in the 'response' variable.
       // If the API call is successful, return the response (String) to the caller.
-      return response.toString();
+      return jsonDecode(response);
     } catch (e) {
       // If an exception occurs during the API call, catch it and handle the error.
       throw Exception('Failed to login');

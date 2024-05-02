@@ -57,14 +57,7 @@ class LoginViewModel extends ChangeNotifier {
     try {
       // Call the login method from the AuthRepository to initiate the login process.
       _response = await authRepository.login(req);
-      String jsonResponse = jsonEncode(_response);
-      print(jsonResponse.toString());
-
-      Map<String, dynamic> logindata = json.decode(jsonResponse);
-      UserLoginSuccessl userLoginSuccessl =
-          UserLoginSuccessl.fromJson(logindata);
-      setUserLoginSuccess(userLoginSuccessl);
-      print(setU)
+      print(_response.toString());
 
       // If the login is successful, set the loginError to null.
       _loginError = null;
