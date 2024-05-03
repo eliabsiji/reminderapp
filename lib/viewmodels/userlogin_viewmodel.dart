@@ -19,8 +19,8 @@ class LoginViewModel extends ChangeNotifier {
   LoginViewModel({required this.authapiService});
 
   // Private variables to store response and error data from the login process.
-  String? _response; // Response from the login API call.
-  String? get response => _response; // Getter to access the login response.
+  var _response; // Response from the login API call.
+  get response => _response; // Getter to access the login response.
 
   late UserLoginModel _userLoginModel = UserLoginModel();
   late UserLoginErrorModel _userLoginErrorModel = UserLoginErrorModel();
@@ -59,11 +59,12 @@ class LoginViewModel extends ChangeNotifier {
     try {
       // Call the login method from the AuthApiService to initiate the login process.
 
-      var response = await authapiService.loginUser(req);
-      if (response is AuthSuccess) {
-        setUserLoginSuccess(response.response as UserLoginSuccessl);
+      _response = await authapiService.loginUser(req);
+      if (_response is AuthSuccess) {
+        setUserLoginSuccess(_response.response as UserLoginSuccessl);
+        print(userLoginSuccessl.token.toString());
       } else {
-        print(response.runtimeType);
+        print(_response.runtimeType);
       }
       // If the login is successful, set the loginError to null.
       _loginError = null;

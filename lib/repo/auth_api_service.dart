@@ -29,7 +29,7 @@ class AuthApiService {
       if (response.statusCode == 200) {
         // Success
         return AuthSuccess(response:UserLoginSuccessl.fromJson(response.data));
-      } else if (response.statusCode == 401) {
+      } else if (response.statusCode == 400) {
         // Handle other status codes as needed
         return response.data;
       }
