@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-import 'package:reminderapp/api/auth_api_service.dart';
+import 'package:reminderapp/repo/auth_api_service.dart';
+import 'package:reminderapp/helper/app_status.dart';
+import 'package:reminderapp/models/userlogin/user_login_success.dart';
 
 class AuthRepository {
   final AuthApiService
@@ -8,13 +10,14 @@ class AuthRepository {
 
   AuthRepository({required this.apiService});
 
-  Future<dynamic> login(Map<dynamic, dynamic> req) async {
+  Future<Object> login(Map<dynamic, dynamic> req) async {
     try {
       // Attempt to make the API call to login the user using the apiService.
       final response = await apiService.loginUser(req);
       // Store the response from the API call in the 'response' variable.
       // If the API call is successful, return the response (String) to the caller.
-      return jsonDecode(response);
+
+       return AuthSuccess(response: userLoginSuccesslFromJson(response));
     } catch (e) {
       // If an exception occurs during the API call, catch it and handle the error.
       throw Exception('Failed to login');

@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:reminderapp/api/auth_api_service.dart';
+import 'package:reminderapp/repo/auth_api_service.dart';
 import 'package:reminderapp/helper/app_loading.dart';
 import 'package:reminderapp/repo/user_auth_repo.dart';
 import 'package:reminderapp/views/screens/reset_password.dart';
@@ -71,14 +71,14 @@ class LogInScreen extends StatelessWidget {
                 if (!loginviewModel.isLoading &&
                     loginviewModel.loginError != null)
                     
-                  Text(
-                    'loginviewModel.userLoginSuccessl.token.toString()',
-                    style: const TextStyle(color: Colors.red),
+                  const Text(
+                    'loginviewModel.userLoginSuccessl',
+                    style: TextStyle(color: Colors.red),
                   ),
                 // Show response message if login is successful
                 if (loginviewModel.response != null)
                   Text(
-                    'loginviewModel.userLoginSuccessl.token.toString()',
+                    loginviewModel.userLoginSuccessl.token.toString(),
                     style: const TextStyle(color: Colors.green),
                   ),
                 Padding(

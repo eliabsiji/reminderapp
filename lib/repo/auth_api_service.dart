@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:reminderapp/helper/app_status.dart';
 import 'package:reminderapp/helper/constants.dart';
+import 'package:reminderapp/models/userlogin/user_login_success.dart';
 
 class AuthApiService {
   late Dio _dio; // Dio instance to perform HTTP requests.
@@ -26,7 +28,7 @@ class AuthApiService {
           await _dio.post(BASE_URL + "login/", data: jsondata);
       if (response.statusCode == 200) {
         // Success
-        return response.data;
+        return AuthSuccess(response:UserLoginSuccessl.fromJson(response.data));
       } else if (response.statusCode == 401) {
         // Handle other status codes as needed
         return response.data;

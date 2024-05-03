@@ -13,7 +13,7 @@ class Failure {
 class AuthSuccess {
   int? status;
   Object response;
-  AuthSuccess({required this.status, required this.response});
+  AuthSuccess({ required this.response});
 }
 
 class AuthFailure {

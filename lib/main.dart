@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:reminderapp/api/auth_api_service.dart';
+import 'package:reminderapp/repo/auth_api_service.dart';
 import 'package:reminderapp/repo/user_auth_repo.dart';
 import 'package:reminderapp/splash_screen.dart';
 import 'package:reminderapp/viewmodels/userlogin_viewmodel.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   late AuthApiService apiService = AuthApiService(dio: dio);
 
   // Create LoginRepository instance with the ApiService instance
-  late AuthRepository authRepository = AuthRepository(apiService: apiService);
+  // late AuthRepository authRepository = AuthRepository(apiService: apiService);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       providers: [
         // Provide the LoginViewModel with LoginViewModel dependency to manage user data and API calls
         ChangeNotifierProvider<LoginViewModel>(
-          create: (context) => LoginViewModel(authRepository: authRepository),
+          create: (context) => LoginViewModel(authapiService: apiService),
         ),
       ],
       child: MaterialApp(

@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-const String BASE_URL = 'http://172.20.10.4:8000/api/';
+const String BASE_URL = 'http://172.18.48.1:8000/api/';
 
 // Success
 const SUCCESS = 200;

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:reminderapp/repo/auth_api_service.dart';
 import 'package:reminderapp/helper/app_status.dart';
 import 'package:reminderapp/models/userlogin/user_login_model.dart';
 import 'package:reminderapp/models/userlogin/user_login_success.dart';
@@ -11,10 +12,11 @@ import 'package:reminderapp/repo/user_auth_repo.dart';
 
 class LoginViewModel extends ChangeNotifier {
 // Instance of the LoginRepository class to interact with the user login data.
-  final AuthRepository authRepository;
+
+  final AuthApiService authapiService;
 
   // Constructor to initialize the LoginViewModel with the LoginRepository instance.
-  LoginViewModel({required this.authRepository});
+  LoginViewModel({required this.authapiService});
 
   // Private variables to store response and error data from the login process.
   String? _response; // Response from the login API call.
@@ -55,10 +57,14 @@ class LoginViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
-      // Call the login method from the AuthRepository to initiate the login process.
-      _response = await authRepository.login(req);
-      print(_response.toString());
+      // Call the login method from the AuthApiService to initiate the login process.
 
+      var response = await authapiService.loginUser(req);
+      if (response is AuthSuccess) {
+        setUserLoginSuccess(response.response as UserLoginSuccessl);
+      } else {
+        print(response.runtimeType);
+      }
       // If the login is successful, set the loginError to null.
       _loginError = null;
     } catch (e) {
