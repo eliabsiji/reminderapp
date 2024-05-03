@@ -17,7 +17,7 @@ class AuthSuccess {
 }
 
 class AuthFailure {
-  bool status;
-  String response;
-  AuthFailure({required this.status, required this.response});
+  int? status;
+  Object response;
+  AuthFailure({ required this.response});
 }

@@ -58,12 +58,11 @@ class LoginViewModel extends ChangeNotifier {
 
     try {
       // Call the login method from the AuthApiService to initiate the login process.
-
       _response = await authapiService.loginUser(req);
       if (_response is AuthSuccess) {
         setUserLoginSuccess(_response.response as UserLoginSuccessl);
         print(userLoginSuccessl.token.toString());
-      } else {
+      } else if(_response is AuthFailure) {
         print(_response.runtimeType);
       }
       // If the login is successful, set the loginError to null.
