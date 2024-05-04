@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hot_toast/flutter_hot_toast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:reminderapp/repo/auth_api_service.dart';
 import 'package:reminderapp/repo/user_auth_repo.dart';
 import 'package:reminderapp/splash_screen.dart';
 import 'package:reminderapp/viewmodels/userlogin_viewmodel.dart';
+import 'package:lottie/lottie.dart';
 
 
 
@@ -33,10 +36,13 @@ class MyApp extends StatelessWidget {
           create: (context) => LoginViewModel(authapiService: apiService),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(fontFamily: 'Poppins'),
-        home: const SplashScreen()
+      child: GlobalLoaderOverlay(
+        child: MaterialApp(
+          builder: FToastBuilder(),
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(fontFamily: 'Poppins'),
+          home: const SplashScreen()
+        ),
       ),
     );
   }

@@ -29,10 +29,7 @@ class AuthApiService {
           await _dio.post(BASE_URL + "login/", data: jsondata);
       if (response.statusCode == 200) {
         // Success
-        return AuthSuccess(response:UserLoginSuccessl.fromJson(response.data));
-      } else if (response.statusCode == 400) {
-        // Handle other status codes as needed
-       return AuthFailure(response: UserLoginErrorModel.fromJson(response.data));
+        return AuthSuccess(response: UserLoginSuccessl.fromJson(response.data));
       }
     } catch (e) {
       if (e is DioException) {

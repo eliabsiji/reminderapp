@@ -22,6 +22,9 @@ class LoginViewModel extends ChangeNotifier {
   var _response; // Response from the login API call.
   get response => _response; // Getter to access the login response.
 
+  bool _loginStatus = true;
+  bool get loginstatus => _loginStatus;
+
   late UserLoginModel _userLoginModel = UserLoginModel();
   late UserLoginErrorModel _userLoginErrorModel = UserLoginErrorModel();
   late UserLoginSuccessl _userLoginSuccessl = UserLoginSuccessl();
@@ -31,8 +34,7 @@ class LoginViewModel extends ChangeNotifier {
   UserLoginSuccessl get userLoginSuccessl => _userLoginSuccessl;
 
   String? _loginError; // Error message in case the login process fails.
-  bool _isLoading =
-      false; // A flag to track the loading state during the login process.
+  bool _isLoading = false; // A flag to track the loading state during the login process.
 
   // Getters to access the error message and loading state.
   String? get loginError => _loginError;
@@ -42,7 +44,7 @@ class LoginViewModel extends ChangeNotifier {
     _userLoginModel = userLoginModel;
   }
 
-  setUserginError(UserLoginErrorModel userLoginErrorModel) {
+  setUserloginError(UserLoginErrorModel userLoginErrorModel) {
     _userLoginErrorModel = userLoginErrorModel;
   }
 
@@ -61,9 +63,13 @@ class LoginViewModel extends ChangeNotifier {
       _response = await authapiService.loginUser(req);
       if (_response is AuthSuccess) {
         setUserLoginSuccess(_response.response as UserLoginSuccessl);
-        print(userLoginSuccessl.token.toString());
-      } else if(_response is AuthFailure) {
-        print(_response.runtimeType);
+
+        print(userLoginSuccessl.status.toString());
+        if (userLoginSuccessl.status == true){
+          _loginStatus = true;
+        }else if (userLoginSuccessl.status == false){
+          _loginStatus = false;
+        }
       }
       // If the login is successful, set the loginError to null.
       _loginError = null;

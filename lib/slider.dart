@@ -4,12 +4,11 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:reminderapp/views/screens/login.dart';
 import 'package:reminderapp/views/screens/signup.dart';
 import 'package:reminderapp/theme.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class IntroSlider extends StatelessWidget {
-   const IntroSlider({super.key});
+  const IntroSlider({super.key});
 
-    
-  
   @override
   Widget build(BuildContext context) {
     const bodyStyle = TextStyle(fontSize: 19.0);
@@ -24,6 +23,7 @@ class IntroSlider extends StatelessWidget {
     return IntroductionScreen(
       pages: [
         PageViewModel(
+          
           title: "Hi There!",
           body: "Do need an app to keep track of your items for all Trips?",
           image: Center(
@@ -65,14 +65,14 @@ class IntroSlider extends StatelessWidget {
           image: Center(
             child: Image.asset('images/login logo.png', height: 175.0),
           ),
-           footer: Padding(
+          footer: Padding(
             padding: kDefaultPadding,
             child: ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>  LogInScreen(),
+                    builder: (context) => LogInScreen(),
                   ),
                 );
               },
@@ -107,7 +107,7 @@ class IntroSlider extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>  LogInScreen(),
+                    builder: (context) => LogInScreen(),
                   ),
                 );
               },
@@ -134,7 +134,7 @@ class IntroSlider extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>  LogInScreen(),
+            builder: (context) => LogInScreen(),
           ),
         );
       },
@@ -142,14 +142,14 @@ class IntroSlider extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>  LogInScreen(),
+            builder: (context) => LogInScreen(),
           ),
         );
       },
       showSkipButton: true,
       skip: const Text('Skip'),
       next: const Icon(Icons.arrow_forward),
-       done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
+      done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: kIsWeb
@@ -163,13 +163,12 @@ class IntroSlider extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
         ),
       ),
-        dotsContainerDecorator: const ShapeDecoration(
+      dotsContainerDecorator: const ShapeDecoration(
         // color: Color.fromARGB(221, 226, 225, 225),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
       ),
-    
     );
   }
 }

@@ -44,6 +44,13 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   introduction_screen: ^3.1.14
   dio: ^5.4.3+1
+  fluttertoast: ^8.2.5
+  flutter_hot_toast: ^0.0.3
+  lottie: ^2.7.0
+  loader_overlay: ^2.3.2
+  flutter_animate: ^3.1.0
+ 
+ 
 
 
  

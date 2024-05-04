@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:reminderapp/helper/loginfailDialog.dart';
 import 'package:reminderapp/repo/auth_api_service.dart';
 import 'package:reminderapp/helper/app_loading.dart';
 import 'package:reminderapp/repo/user_auth_repo.dart';
@@ -15,6 +16,8 @@ import 'package:reminderapp/theme.dart';
 import 'package:reminderapp/viewmodels/userlogin_viewmodel.dart';
 import 'package:reminderapp/views/widgets/login_form.dart';
 import 'package:reminderapp/views/widgets/primary_button.dart';
+import 'package:flutter_hot_toast/flutter_hot_toast.dart';
+import 'package:lottie/lottie.dart';
 
 class LogInScreen extends StatelessWidget {
   LogInScreen({super.key});
@@ -28,6 +31,19 @@ class LogInScreen extends StatelessWidget {
     bool _isObscure = true;
     final formKey = GlobalKey<FormState>();
     final loginviewModel = Provider.of<LoginViewModel>(context);
+
+    AlertDialog alert = AlertDialog(
+      title: const Text('Alert Dialog Title'),
+      content: const Text('This is a basic alert dialog in Flutter.'),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('OK'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
 
     Map<String, IconData> iconMapping = {
       'person': Icons.person,
@@ -65,18 +81,26 @@ class LogInScreen extends StatelessWidget {
                         child: Image.asset(
                       'images/login logo.png',
                     ))),
-                if (loginviewModel.isLoading) 
-                const AppLoading(),
+                if (loginviewModel.isLoading) const AppLoading(),
+
                 // Show error message if login fails
-                if (!loginviewModel.isLoading &&
-                    loginviewModel.loginError != null)
-                    
-                  const Text(
-                    'loginviewModel.userLoginSuccessl',
-                    style: TextStyle(color: Colors.red),
-                  ),
+
+                // if (!loginviewModel.isLoading && loginviewModel.loginError != null && loginviewModel.loginstatus.toString() == "false")
+
+                //     Text( loginviewModel.userLoginErrorModel.message.toString(),
+                //     style: const TextStyle(color: Colors.red),
+                //   ),
                 // Show response message if login is successful
-                if (loginviewModel.response != null)
+                if (loginviewModel.response != null &&
+                    loginviewModel.loginstatus.toString() == "false")
+                  Text(
+                    loginviewModel.userLoginSuccessl.message.toString(),
+                    style: const TextStyle(color: Colors.red),
+                  ),
+
+                // Show response message if login is successful
+                if (loginviewModel.response != null &&
+                    loginviewModel.loginstatus.toString() == "true")
                   Text(
                     loginviewModel.userLoginSuccessl.message.toString(),
                     style: const TextStyle(color: Colors.green),
@@ -180,10 +204,47 @@ class LogInScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Map<dynamic, dynamic> req = {
-                      "username":username.text,
-                      "password":password.text,
+                      "username": username.text,
+                      "password": password.text,
                     };
+                    context.loaderOverlay.show(
+                      widget: FlutterHotToast.loading(
+                        height: 70,
+                        width: 280,
+                        label: const Text(
+                          'loading...😬',
+                          style: TextStyle(
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                    );
+                    
                     loginviewModel.login(req);
+
+                    if (loginviewModel.userLoginSuccessl.status.toString() ==
+                        'true') {
+                      print("yesss");
+                    } else if (loginviewModel.userLoginSuccessl.status
+                            .toString() ==
+                        'false') {
+                      Future.delayed(const Duration(seconds: 2), () {
+                      context.loaderOverlay.show(
+                        widget: FlutterHotToast.success(
+                          context,
+                          height: 70,
+                          width: 280,
+                          label: const Text(
+                            'success ✅',
+                            style: TextStyle(
+                              fontSize: 30,
+                            ),
+                          ),
+                        ),
+                      );
+                    });
+
+                    }
                   },
                   child: const SizedBox(
                     height: 49,
