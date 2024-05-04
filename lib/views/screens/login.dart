@@ -207,43 +207,17 @@ class LogInScreen extends StatelessWidget {
                       "username": username.text,
                       "password": password.text,
                     };
-                    context.loaderOverlay.show(
-                      widget: FlutterHotToast.loading(
-                        height: 70,
-                        width: 280,
-                        label: const Text(
-                          'loading...😬',
-                          style: TextStyle(
-                            fontSize: 30,
-                          ),
-                        ),
-                      ),
-                    );
+                   
                     
                     loginviewModel.login(req);
 
                     if (loginviewModel.userLoginSuccessl.status.toString() ==
                         'true') {
                       print("yesss");
-                    } else if (loginviewModel.userLoginSuccessl.status
+                    }
+                     else if (loginviewModel.userLoginSuccessl.status
                             .toString() ==
                         'false') {
-                      Future.delayed(const Duration(seconds: 2), () {
-                      context.loaderOverlay.show(
-                        widget: FlutterHotToast.success(
-                          context,
-                          height: 70,
-                          width: 280,
-                          label: const Text(
-                            'success ✅',
-                            style: TextStyle(
-                              fontSize: 30,
-                            ),
-                          ),
-                        ),
-                      );
-                    });
-
                     }
                   },
                   child: const SizedBox(
