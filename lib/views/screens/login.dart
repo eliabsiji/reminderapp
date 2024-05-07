@@ -1,49 +1,41 @@
-// import 'package:flutter/cupertino.dart';
-// ignore_for_file: unnecessary_import, dead_code, must_be_immutable
-
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:reminderapp/helper/loginfailDialog.dart';
-import 'package:reminderapp/repo/auth_api_service.dart';
 import 'package:reminderapp/helper/app_loading.dart';
-import 'package:reminderapp/repo/user_auth_repo.dart';
+import 'package:reminderapp/utils/utils.dart';
+import 'package:reminderapp/viewmodels/auth_view_model.dart';
 import 'package:reminderapp/views/screens/reset_password.dart';
 import 'package:reminderapp/views/screens/signup.dart';
 import 'package:reminderapp/theme.dart';
 import 'package:reminderapp/viewmodels/userlogin_viewmodel.dart';
-import 'package:reminderapp/views/widgets/login_form.dart';
 import 'package:reminderapp/views/widgets/primary_button.dart';
-import 'package:flutter_hot_toast/flutter_hot_toast.dart';
-import 'package:lottie/lottie.dart';
 
-class LogInScreen extends StatelessWidget {
-  LogInScreen({super.key});
+class LogInScreen extends StatefulWidget {
+  const LogInScreen({super.key});
 
+  @override
+  // ignore: library_private_types_in_public_api
+  _LogInScreenState createState() => _LogInScreenState();
+}
+
+class _LogInScreenState extends State<LogInScreen> {
   // Declare the TextEditingControllers at the class level
-  final TextEditingController username = TextEditingController();
-  final TextEditingController password = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  void disposed() {
+    super.dispose();
+    _usernameController.dispose();
+    _passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
     bool _isObscure = true;
     final formKey = GlobalKey<FormState>();
-    final loginviewModel = Provider.of<LoginViewModel>(context);
-
-    AlertDialog alert = AlertDialog(
-      title: const Text('Alert Dialog Title'),
-      content: const Text('This is a basic alert dialog in Flutter.'),
-      actions: <Widget>[
-        TextButton(
-          child: const Text('OK'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
-    );
+    // final loginviewModel = Provider.of<LoginViewModel>(context);
 
     Map<String, IconData> iconMapping = {
       'person': Icons.person,
@@ -81,34 +73,34 @@ class LogInScreen extends StatelessWidget {
                         child: Image.asset(
                       'images/login logo.png',
                     ))),
-                if (loginviewModel.isLoading) const AppLoading(),
+                if (authViewModel.isLoading) const AppLoading(),
 
-                // Show error message if login fails
+                // // Show error message if login fails
 
-                // if (!loginviewModel.isLoading && loginviewModel.loginError != null && loginviewModel.loginstatus.toString() == "false")
+                // // if (!loginviewModel.isLoading && loginviewModel.loginError != null && loginviewModel.loginstatus.toString() == "false")
 
-                //     Text( loginviewModel.userLoginErrorModel.message.toString(),
+                // //     Text( loginviewModel.userLoginErrorModel.message.toString(),
+                // //     style: const TextStyle(color: Colors.red),
+                // //   ),
+                // // Show response message if login is successful
+                // if (loginviewModel.response != null &&
+                //     loginviewModel.loginstatus.toString() == "false")
+                //   Text(
+                //     loginviewModel.userLoginSuccessl.message.toString(),
                 //     style: const TextStyle(color: Colors.red),
                 //   ),
-                // Show response message if login is successful
-                if (loginviewModel.response != null &&
-                    loginviewModel.loginstatus.toString() == "false")
-                  Text(
-                    loginviewModel.userLoginSuccessl.message.toString(),
-                    style: const TextStyle(color: Colors.red),
-                  ),
 
-                // Show response message if login is successful
-                if (loginviewModel.response != null &&
-                    loginviewModel.loginstatus.toString() == "true")
-                  Text(
-                    loginviewModel.userLoginSuccessl.message.toString(),
-                    style: const TextStyle(color: Colors.green),
-                  ),
+                // // Show response message if login is successful
+                // if (loginviewModel.response != null &&
+                //     loginviewModel.loginstatus.toString() == "true")
+                //   Text(
+                //     loginviewModel.userLoginSuccessl.message.toString(),
+                //     style: const TextStyle(color: Colors.green),
+                //   ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: TextFormField(
-                    controller: username,
+                    controller: _usernameController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Email Field required";
@@ -135,7 +127,7 @@ class LogInScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: TextFormField(
-                    controller: password,
+                    controller: _passwordController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Email Field required";
@@ -203,21 +195,23 @@ class LogInScreen extends StatelessWidget {
 
                 GestureDetector(
                   onTap: () {
-                    Map<dynamic, dynamic> req = {
-                      "username": username.text,
-                      "password": password.text,
-                    };
-                   
-                    
-                    loginviewModel.login(req);
+                    if (_usernameController.text.isEmpty) {
+                      Utils.flushBarErrorMessage("Error",
+                          "Please Enter Username", context);
+                    } else if (_passwordController.text.isEmpty) {
+                      Utils.flushBarErrorMessage("Error",
+                          "Please Enter  password ", context);
+                    } else if (_passwordController.text.length < 4) {
+                      Utils.flushBarErrorMessage("Error",
+                          "Password must be 6 or more", context);
+                    } else {
+                      Map data = {
+                        "username": _usernameController.text.toString(),
+                        "password": _passwordController.text.toString(),
+                      };
 
-                    if (loginviewModel.userLoginSuccessl.status.toString() ==
-                        'true') {
-                      print("yesss");
-                    }
-                     else if (loginviewModel.userLoginSuccessl.status
-                            .toString() ==
-                        'false') {
+                      authViewModel.loginApi(data,context);
+                      print("api hit");
                     }
                   },
                   child: const SizedBox(
@@ -272,6 +266,4 @@ class LogInScreen extends StatelessWidget {
       ),
     );
   }
-
-  void setState(Null Function() param0) {}
 }
