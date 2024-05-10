@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:reminderapp/routes/routes_name.dart';
 
 class HomeViewModel with ChangeNotifier {
   bool _welcomeMsg = false;
@@ -12,6 +13,9 @@ class HomeViewModel with ChangeNotifier {
 
   void displayMsg() {
     setWelcomeMsg(true);
-    
+  }
+
+  void back(BuildContext context) {
+    Navigator.pushNamed(context, RoutesName.splashscreen);
   }
 }

@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: dead_code
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:reminderapp/helper/app_loading.dart';
 import 'package:reminderapp/utils/utils.dart';
@@ -8,7 +8,6 @@ import 'package:reminderapp/viewmodels/auth_view_model.dart';
 import 'package:reminderapp/views/screens/reset_password.dart';
 import 'package:reminderapp/views/screens/signup.dart';
 import 'package:reminderapp/theme.dart';
-import 'package:reminderapp/viewmodels/userlogin_viewmodel.dart';
 import 'package:reminderapp/views/widgets/primary_button.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -74,29 +73,6 @@ class _LogInScreenState extends State<LogInScreen> {
                       'images/login logo.png',
                     ))),
                 if (authViewModel.isLoading) const AppLoading(),
-
-                // // Show error message if login fails
-
-                // // if (!loginviewModel.isLoading && loginviewModel.loginError != null && loginviewModel.loginstatus.toString() == "false")
-
-                // //     Text( loginviewModel.userLoginErrorModel.message.toString(),
-                // //     style: const TextStyle(color: Colors.red),
-                // //   ),
-                // // Show response message if login is successful
-                // if (loginviewModel.response != null &&
-                //     loginviewModel.loginstatus.toString() == "false")
-                //   Text(
-                //     loginviewModel.userLoginSuccessl.message.toString(),
-                //     style: const TextStyle(color: Colors.red),
-                //   ),
-
-                // // Show response message if login is successful
-                // if (loginviewModel.response != null &&
-                //     loginviewModel.loginstatus.toString() == "true")
-                //   Text(
-                //     loginviewModel.userLoginSuccessl.message.toString(),
-                //     style: const TextStyle(color: Colors.green),
-                //   ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: TextFormField(
@@ -196,21 +172,21 @@ class _LogInScreenState extends State<LogInScreen> {
                 GestureDetector(
                   onTap: () {
                     if (_usernameController.text.isEmpty) {
-                      Utils.flushBarErrorMessage("Error",
-                          "Please Enter Username", context);
+                      Utils.flushBarErrorMessage(
+                          "Error", "Please Enter Username", context);
                     } else if (_passwordController.text.isEmpty) {
-                      Utils.flushBarErrorMessage("Error",
-                          "Please Enter  password ", context);
+                      Utils.flushBarErrorMessage(
+                          "Error", "Please Enter  password ", context);
                     } else if (_passwordController.text.length < 4) {
-                      Utils.flushBarErrorMessage("Error",
-                          "Password must be 6 or more", context);
+                      Utils.flushBarErrorMessage(
+                          "Error", "Password must be 6 or more", context);
                     } else {
                       Map data = {
                         "username": _usernameController.text.toString(),
                         "password": _passwordController.text.toString(),
                       };
 
-                      authViewModel.loginApi(data,context);
+                      authViewModel.loginApi(data, context);
                       print("api hit");
                     }
                   },

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter/foundation.dart';
 import 'package:reminderapp/repository/auth_repository.dart';
 import 'package:reminderapp/routes/routes_name.dart';
 import 'package:reminderapp/utils/utils.dart';
@@ -33,7 +33,9 @@ class AuthViewModel with ChangeNotifier {
         Utils.flushBarErrorMessage("Failed", "Login Failed", context);
       } else {
         Utils.flushBarErrorMessage("Failed", error.toString(), context);
-        print(error.toString());
+        if (kDebugMode) {
+          print(error.toString());
+        }
       }
     });
   }

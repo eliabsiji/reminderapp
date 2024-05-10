@@ -1,26 +1,23 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hot_toast/flutter_hot_toast.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:reminderapp/repository/auth_api_service.dart';
-import 'package:reminderapp/repository/user_auth_repo.dart';
 import 'package:reminderapp/routes/routes.dart';
 import 'package:reminderapp/routes/routes_name.dart';
+// ignore: unused_import
 import 'package:reminderapp/splash_screen.dart';
 import 'package:reminderapp/viewmodels/auth_view_model.dart';
 import 'package:reminderapp/viewmodels/home_view_model.dart';
-import 'package:reminderapp/viewmodels/userlogin_viewmodel.dart';
-import 'package:lottie/lottie.dart';
+import 'package:reminderapp/viewmodels/user_view_model.dart';
 
 
 
 void main() {
-  runApp(  MyApp());
+  runApp(  const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
+   const MyApp({super.key});
 
 
 
@@ -33,6 +30,7 @@ class MyApp extends StatelessWidget {
         //   create: (context) => LoginViewModel(authapiService: apiService),
         // ),
          ChangeNotifierProvider(create: (_)=> AuthViewModel()),
+         ChangeNotifierProvider(create: (_)=> UserViewModel()),
          ChangeNotifierProvider(create: (_)=> HomeViewModel()),
         
       ],
@@ -41,8 +39,8 @@ class MyApp extends StatelessWidget {
           builder: FToastBuilder(),
           debugShowCheckedModeBanner: false,
           theme: ThemeData(fontFamily: 'Poppins'),
-          home: const SplashScreen(),
-          initialRoute: RoutesName.login,
+          // home: const SplashScreen(),
+          initialRoute: RoutesName.splashscreen,
           onGenerateRoute: Routes.generateRoute,
         ),
       ),

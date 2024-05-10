@@ -1,11 +1,12 @@
-// ignore: file_names
+
+// ignore_for_file: prefer_adjacent_string_concatenation, file_names
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
 import 'package:reminderapp/data/network/BaseApiServices.dart';
 import 'package:http/http.dart' as http;
 import 'package:reminderapp/data/response/app_exceptions.dart';
-import 'package:reminderapp/helper/constants.dart';
 
 class NetworkApiServices extends BaseApiServices {
   @override

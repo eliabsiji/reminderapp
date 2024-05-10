@@ -4,7 +4,6 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:reminderapp/views/screens/login.dart';
 import 'package:reminderapp/views/screens/signup.dart';
 import 'package:reminderapp/theme.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class IntroSlider extends StatelessWidget {
   const IntroSlider({super.key});
@@ -72,7 +71,7 @@ class IntroSlider extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LogInScreen(),
+                    builder: (context) => const LogInScreen(),
                   ),
                 );
               },
@@ -107,7 +106,7 @@ class IntroSlider extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LogInScreen(),
+                    builder: (context) => const LogInScreen(),
                   ),
                 );
               },
@@ -134,7 +133,7 @@ class IntroSlider extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => LogInScreen(),
+            builder: (context) => const LogInScreen(),
           ),
         );
       },
@@ -142,7 +141,7 @@ class IntroSlider extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => LogInScreen(),
+            builder: (context) => const LogInScreen(),
           ),
         );
       },
