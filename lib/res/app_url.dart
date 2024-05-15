@@ -3,5 +3,5 @@
 class AppUrl {
   static var baseUrl = 'http://172.20.10.3:8000/';
   static var loginEndPoint = baseUrl + 'api/login/';
-  static var registerEndPoint = baseUrl + 'api/createuser/';
+  static var signupEndPoint = baseUrl + 'api/signup/';
 }

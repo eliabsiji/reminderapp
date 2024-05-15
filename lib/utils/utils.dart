@@ -44,7 +44,7 @@ class Utils {
           flushbarPosition: FlushbarPosition.TOP,
           positionOffset: 20,
           message: message,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.lightGreen,
           title: title,
           messageColor: Colors.black,
           duration: const Duration(seconds: 3),

@@ -30,7 +30,7 @@ class AuthViewModel with ChangeNotifier {
     }).onError((error, stackTrace) {
       setLoading(false);
       if (error.toString().contains('status')) {
-        Utils.flushBarErrorMessage("Failed", "Login Failed", context);
+        Utils.flushBarErrorMessage("Login Failed", "Invalid Login Details", context);
       } else {
         Utils.flushBarErrorMessage("Failed", error.toString(), context);
         if (kDebugMode) {

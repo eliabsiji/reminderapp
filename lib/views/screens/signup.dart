@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, dead_code
 import 'package:flutter/material.dart';
 import 'package:reminderapp/views/screens/login.dart';
 import 'package:reminderapp/theme.dart';
@@ -7,8 +7,22 @@ import 'package:reminderapp/views/widgets/login_option.dart';
 import 'package:reminderapp/views/widgets/primary_button.dart';
 import 'package:reminderapp/views/widgets/signup_form.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+   const SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+   bool _isObscure = true;
+
+  Map<String, IconData> iconMapping = {
+      'person' : Icons.person,
+      'email' : Icons.email,
+      'phone' : Icons.phone,
+      'password' : Icons.password,
+    };
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +49,7 @@ class SignUpScreen extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'Already a member?',
+                    'Already registered?',
                     style: subTitle,
                   ),
                   const SizedBox(
@@ -67,10 +81,98 @@ class SignUpScreen extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            const Padding(
-              padding: kDefaultPadding,
-              child: SignUpForm(),
+         Padding(
+        padding: kDefaultPadding,
+        child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: TextFormField(
+          obscureText: true,
+          decoration: InputDecoration(
+            labelText: 'Email',
+            labelStyle: const TextStyle(color: kTextFieldColor,),
+            hintText: 'Email',
+            hintStyle: const TextStyle(color: kTextFieldColor),
+            border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.grey)),
+            fillColor: Colors.grey,
+            filled: false,
+            prefixIcon: Icon(iconMapping['email']!),
+            focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor),),   
+              ),
+            )
             ),
+            ),
+        Padding(
+        padding: kDefaultPadding,
+        child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: TextFormField(
+          obscureText: true,
+          decoration: InputDecoration(
+            labelText: 'Username',
+            labelStyle: const TextStyle(color: kTextFieldColor,),
+            hintText: 'Username',
+            hintStyle: const TextStyle(color: kTextFieldColor),
+            border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.grey)),
+            fillColor: Colors.grey,
+            filled: false,
+            prefixIcon: Icon(iconMapping['person']!),
+            focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor),),
+              ),
+            )
+            ),
+            ),
+        Padding(
+        padding: kDefaultPadding,
+        child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: TextFormField(
+          obscureText: true,
+          decoration: InputDecoration(
+            labelText: 'Password',
+            labelStyle: const TextStyle(color: kTextFieldColor,),
+            hintText: 'Password',
+            hintStyle: const TextStyle(color: kTextFieldColor),
+            border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.grey)),
+            fillColor: Colors.grey,
+            filled: false,
+            prefixIcon: Icon(iconMapping['password']!),
+            focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor),),
+            ),
+            )
+            ),
+           ),
+        Padding(
+        padding: kDefaultPadding,
+        child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: TextFormField(
+          obscureText: true,
+          decoration: InputDecoration(
+            labelText: 'Confirm Password',
+            labelStyle: const TextStyle(color: kTextFieldColor,),
+            hintText: 'Confirm Password',
+            hintStyle: const TextStyle(color: kTextFieldColor),
+            border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.grey)),
+            fillColor: Colors.grey,
+            filled: false,
+            prefixIcon: Icon(iconMapping['password']!),
+            focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor),),
+                ),
+              )
+              ),
+              ),
             const SizedBox(
               height: 20,
             ),
