@@ -278,7 +278,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const Padding(
                 padding: kDefaultPadding,
-                // child: LoginOption(),
+                child: LoginOption(),
               ),
               const SizedBox(
                 height: 20,
