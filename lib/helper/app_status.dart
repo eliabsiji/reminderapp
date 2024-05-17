@@ -5,9 +5,9 @@ class Success {
 }
 
 class Failure {
-  int code;
+  int? code;
   Object errorResponse;
-  Failure({required this.code, required this.errorResponse});
+  Failure({required this.errorResponse});
 }
 
 class AuthSuccess {

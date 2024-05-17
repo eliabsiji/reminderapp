@@ -6,8 +6,10 @@ import 'package:reminderapp/routes/routes.dart';
 import 'package:reminderapp/routes/routes_name.dart';
 // ignore: unused_import
 import 'package:reminderapp/splash_screen.dart';
+
 import 'package:reminderapp/viewmodels/auth_view_model.dart';
 import 'package:reminderapp/viewmodels/home_view_model.dart';
+import 'package:reminderapp/viewmodels/signup_view_model.dart';
 import 'package:reminderapp/viewmodels/user_view_model.dart';
 
 
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
          ChangeNotifierProvider(create: (_)=> AuthViewModel()),
          ChangeNotifierProvider(create: (_)=> UserViewModel()),
          ChangeNotifierProvider(create: (_)=> HomeViewModel()),
+          ChangeNotifierProvider(create: (_)=> SignupViewModel()),
         
       ],
       child: GlobalLoaderOverlay(

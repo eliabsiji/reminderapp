@@ -8,12 +8,12 @@ import 'package:reminderapp/models/userlogin/user_login_success.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserViewModel with ChangeNotifier {
+ 
   Future<bool> saveUser(UserLoginSuccessl userLoginSuccessl) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setString('token', userLoginSuccessl.token.toString());
     sp.setString('username', userLoginSuccessl.username.toString());
     notifyListeners();
-
     return true;
   }
 

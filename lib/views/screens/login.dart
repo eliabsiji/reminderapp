@@ -34,7 +34,7 @@ class _LogInScreenState extends State<LogInScreen> {
     final authViewModel = Provider.of<AuthViewModel>(context);
     bool _isObscure = true;
     final formKey = GlobalKey<FormState>();
-    // final loginviewModel = Provider.of<LoginViewModel>(context);
+   //final loginviewModel = Provider.of<LoginViewModel>(context);
 
     Map<String, IconData> iconMapping = {
       'person': Icons.person,

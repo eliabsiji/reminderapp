@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_adjacent_string_concatenation, file_names
 
 import 'dart:convert';
@@ -7,8 +6,11 @@ import 'package:http/http.dart';
 import 'package:reminderapp/data/network/BaseApiServices.dart';
 import 'package:http/http.dart' as http;
 import 'package:reminderapp/data/response/app_exceptions.dart';
+import 'package:reminderapp/helper/app_status.dart';
+import 'package:reminderapp/models/signup/signupErrorResponse.dart';
 
 class NetworkApiServices extends BaseApiServices {
+  late SignupErrorResponse signupErrorResponse;
   @override
   Future<dynamic> getGetApiResponse(String url) async {
     dynamic responseJson;
@@ -43,14 +45,19 @@ class NetworkApiServices extends BaseApiServices {
     switch (response.statusCode) {
       case 200:
         dynamic responseJson = jsonDecode(response.body);
-        return responseJson;
+        return Success(code: 200, response: responseJson);
       case 400:
-        throw BadRequestException(response.body.toString());
+        //throw BadRequestException(response.body.toString());
+        dynamic responseJson = jsonDecode(response.body);
+        return Failure(errorResponse: signupErrorResponseFromJson(response.body));
       case 500:
       case 404:
-       throw UnauthorisedExeption(response.body.toString());
+      throw UnauthorisedExeption(response.toString());
       default:
-           throw FetchDataException('Error Accrued while communication with server'+ 'with status code '+ response.statusCode.toString());
+        throw FetchDataException(
+            'Error Accrued while communication with server' +
+                'with status code ' +
+                response.statusCode.toString());
     }
   }
 }
