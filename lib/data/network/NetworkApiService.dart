@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:reminderapp/data/response/app_exceptions.dart';
 import 'package:reminderapp/helper/app_status.dart';
 import 'package:reminderapp/models/signup/signupErrorResponse.dart';
+import 'package:reminderapp/models/userlogin/user_login_error.dart';
 
 class NetworkApiServices extends BaseApiServices {
   late SignupErrorResponse signupErrorResponse;
@@ -45,14 +46,49 @@ class NetworkApiServices extends BaseApiServices {
     switch (response.statusCode) {
       case 200:
         dynamic responseJson = jsonDecode(response.body);
-        return Success(code: 200, response: responseJson);
+        return Success(code: 200, response: response.body);
       case 400:
-        //throw BadRequestException(response.body.toString());
-        dynamic responseJson = jsonDecode(response.body);
-        return Failure(errorResponse: signupErrorResponseFromJson(response.body));
+        // throw BadRequestException(response.body.toString());
+        return Failure(
+            errorResponse: signupErrorResponseFromJson(response.body));
       case 500:
       case 404:
-      throw UnauthorisedExeption(response.toString());
+        throw UnauthorisedExeption(response.toString());
+      default:
+        throw FetchDataException(
+            'Error Accrued while communication with server' +
+                'with status code ' +
+                response.statusCode.toString());
+    }
+  }
+
+  @override
+  Future getPostApiAuthResponse(String url, dynamic data) async {
+    dynamic resonseJson;
+
+    try {
+      Response response = await http
+          .post(Uri.parse(url), body: data)
+          .timeout(const Duration(seconds: 10));
+
+      resonseJson = returnAuthResponse(response);
+    } on SocketException {
+      throw FetchDataException('No internet Connection');
+    }
+    return resonseJson;
+  }
+
+  dynamic returnAuthResponse(http.Response response) {
+    switch (response.statusCode) {
+      case 200:
+        dynamic responseJson = jsonDecode(response.body);
+        return Success(code: 200, response: response.body);
+      case 400:
+        // throw BadRequestException(response.body.toString());
+        return Failure(errorResponse: userLoginErrorFromJson(response.body));
+      case 500:
+      case 404:
+        throw UnauthorisedExeption(response.toString());
       default:
         throw FetchDataException(
             'Error Accrued while communication with server' +

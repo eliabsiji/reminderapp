@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserViewModel with ChangeNotifier {
  
+ 
   Future<bool> saveUser(UserLoginSuccessl userLoginSuccessl) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setString('token', userLoginSuccessl.token.toString());
@@ -23,7 +24,8 @@ class UserViewModel with ChangeNotifier {
     final String? username = sp.getString('username');
     // print(token.toString());
     return UserLoginSuccessl(
-        username: username.toString(), token: token.toString());
+        username: username.toString(), 
+        token: token.toString());
   }
 
   Future<bool> removeUser() async {

@@ -169,24 +169,24 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (_usernameController.text.isEmpty) {
-                      Utils.flushBarErrorMessage(
-                          "Error", "Please Enter Username", context);
-                    } else if (_passwordController.text.isEmpty) {
-                      Utils.flushBarErrorMessage(
-                          "Error", "Please Enter  password ", context);
-                    } else if (_passwordController.text.length < 4) {
-                      Utils.flushBarErrorMessage(
-                          "Error", "Password must be 6 or more", context);
-                    } else {
+                    // if (_usernameController.text.isEmpty) {
+                    //   Utils.flushBarErrorMessage(
+                    //       "Error", "Please Enter Username", context);
+                    // } else if (_passwordController.text.isEmpty) {
+                    //   Utils.flushBarErrorMessage(
+                    //       "Error", "Please Enter  password ", context);
+                    // } else if (_passwordController.text.length < 4) {
+                    //   Utils.flushBarErrorMessage(
+                    //       "Error", "Password must be 6 or more", context);
+                    // } else {
                       Map data = {
-                        "username": _usernameController.text.toString(),
-                        "password": _passwordController.text.toString(),
+                        "username": 'siji',
+                        "password": 'javajava',
                       };
 
                       authViewModel.loginApi(data, context);
                       print("api hit");
-                    }
+                  //  }
                   },
                   child: const SizedBox(
                     height: 49,

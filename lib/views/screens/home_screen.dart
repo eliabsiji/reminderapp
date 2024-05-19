@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reminderapp/slider.dart';
@@ -7,22 +8,42 @@ import 'package:reminderapp/viewmodels/home_view_model.dart';
 import 'package:reminderapp/viewmodels/user_view_model.dart';
 import 'package:reminderapp/views/screens/login.dart';
 import 'package:reminderapp/views/widgets/primary_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  HomeViewModel homeViewModel = HomeViewModel();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    homeViewModel.getUserData();
+    // print(homeViewModel.token.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
     final userPreference = Provider.of<UserViewModel>(context);
-    final user = Provider.of<HomeViewModel>(context);
     return Scaffold(
       floatingActionButton:
           FloatingActionButton(child: const Icon(Icons.add), onPressed: () {}),
       body: Column(
         children: [
-          const BottomAppBar(
-            child: Tab(
-              icon: Icon(Icons.home),
+          BottomAppBar(
+            child: GestureDetector(
+              onTap: () {
+                print(userPreference.toString());
+              },
+              child: const Tab(
+                icon: Icon(Icons.home),
+              ),
             ),
           ),
           const SizedBox(
@@ -56,10 +77,10 @@ class HomeScreen extends StatelessWidget {
                   child: const PrimaryButton(
                       buttonText: "back to splash screen"))),
           const Center(
-            child: Text("welcome home"),
+            child: Text(''),
           ),
-          Center(
-            child: Text(userPreference.toString()),
+          const Center(
+            child: Text('kk'),
           ),
         ],
       ),
