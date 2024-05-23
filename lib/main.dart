@@ -12,30 +12,21 @@ import 'package:reminderapp/viewmodels/home_view_model.dart';
 import 'package:reminderapp/viewmodels/signup_view_model.dart';
 import 'package:reminderapp/viewmodels/user_view_model.dart';
 
-
-
 void main() {
-  runApp(  const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-   const MyApp({super.key});
-
-
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        // // Provide the LoginViewModel with LoginViewModel dependency to manage user data and API calls
-        // ChangeNotifierProvider<LoginViewModel>(
-        //   create: (context) => LoginViewModel(authapiService: apiService),
-        // ),
-         ChangeNotifierProvider(create: (_)=> AuthViewModel()),
-         ChangeNotifierProvider(create: (_)=> UserViewModel()),
-         ChangeNotifierProvider(create: (_)=> HomeViewModel()),
-          ChangeNotifierProvider(create: (_)=> SignupViewModel()),
-        
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => UserViewModel()),
+        ChangeNotifierProvider(create: (_) => HomeViewModel()),
+        ChangeNotifierProvider(create: (_) => SignupViewModel()),
       ],
       child: GlobalLoaderOverlay(
         child: MaterialApp(

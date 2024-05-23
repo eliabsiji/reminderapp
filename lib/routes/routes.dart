@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reminderapp/index_screen.dart';
 import 'package:reminderapp/routes/routes_name.dart';
 import 'package:reminderapp/slider.dart';
 import 'package:reminderapp/splash_screen.dart';
@@ -20,7 +21,9 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext) =>  IntroSlider());
 
-
+      case RoutesName.index:
+        return MaterialPageRoute(
+            builder: (BuildContext) =>  IndexScreen());
       case RoutesName.home:
         return MaterialPageRoute(
             builder: (BuildContext) =>  HomeScreen());

@@ -18,7 +18,7 @@ class UserViewModel with ChangeNotifier {
     return true;
   }
 
-  Future<UserLoginSuccessl> getUser() async {
+  Future<UserLoginSuccessl> getUser() async {     
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final String? token = sp.getString('token');
     final String? username = sp.getString('username');

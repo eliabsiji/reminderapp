@@ -52,6 +52,9 @@ dependencies:
   toastification: ^2.0.0
   another_flushbar: ^1.12.30
   shared_preferences: ^2.2.3
+  google_nav_bar: ^5.0.6
+  curved_navigation_bar: ^1.0.3
+  line_icons: ^2.0.3
  
  
 

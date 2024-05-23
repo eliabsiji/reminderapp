@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
    
 class AppLoading extends StatelessWidget {
   const AppLoading({super.key});
@@ -8,7 +9,7 @@ class AppLoading extends StatelessWidget {
     return Center(
       child: Container(
         padding: const EdgeInsets.all(20.0),
-        child: const CupertinoActivityIndicator(),
+        child: const CupertinoActivityIndicator(radius: 25, color: Colors.green,),
       ),
     );
   }

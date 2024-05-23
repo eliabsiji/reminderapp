@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:reminderapp/models/userlogin/user_login_success.dart';
@@ -44,7 +43,6 @@ class HomeViewModel with ChangeNotifier {
   }
 
   void loadUserData() async {
-  
-  
+    print('home home');
   }
 }

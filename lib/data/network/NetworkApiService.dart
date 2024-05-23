@@ -81,7 +81,7 @@ class NetworkApiServices extends BaseApiServices {
   dynamic returnAuthResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        dynamic responseJson = jsonDecode(response.body);
+       // dynamic responseJson = jsonDecode(response.body);
         return Success(code: 200, response: response.body);
       case 400:
         // throw BadRequestException(response.body.toString());
